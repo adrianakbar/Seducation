@@ -17,7 +17,7 @@ class HomepageuserController {
           .get();
 
       email = user.email ?? userDoc['email'];
-      username = userDoc['username'];
+      username = userDoc['username'] ?? 'User';
       imageUrl = userDoc['imageUrl'];
     }
   }
@@ -56,7 +56,7 @@ class HomepageuserController {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
           await FirebaseFirestore.instance
-              .collection('mentor')
+              .collection('mentors')
               .get();
 
       for (var doc in querySnapshot.docs) {
@@ -64,7 +64,7 @@ class HomepageuserController {
           id: doc.id,
           nama: doc['nama'],
           fotoUrl: doc['fotoUrl'],
-          email: doc['email'],
+          nohp: doc['nohp'],
           asal: doc['asal'],
           deskripsi: doc['deskripsi'],
         );

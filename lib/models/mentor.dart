@@ -4,7 +4,7 @@ class Mentor {
   String? id;
   String nama;
   String fotoUrl;
-  String email;
+  String nohp;
   String asal;
   String deskripsi;
 
@@ -12,7 +12,7 @@ class Mentor {
     this.id,
     required this.nama,
     required this.fotoUrl,
-    required this.email,
+    required this.nohp,
     required this.asal,
     required this.deskripsi,
   });
@@ -30,7 +30,7 @@ class Mentor {
       id: doc.id,
       nama: data['nama'],
       fotoUrl: data['fotoUrl'],
-      email: data['email'],
+      nohp: data['nohp'],
       asal: data['asal'],
       deskripsi: data['deskripsi'],
     );

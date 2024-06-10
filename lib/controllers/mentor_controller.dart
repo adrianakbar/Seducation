@@ -6,7 +6,7 @@ import 'dart:io';
 
 class Mentorcontroller {
   final CollectionReference mentorsCollection =
-      FirebaseFirestore.instance.collection('mentor');
+      FirebaseFirestore.instance.collection('mentors');
 
   final ImagePicker _picker = ImagePicker();
 
@@ -15,14 +15,18 @@ class Mentorcontroller {
     return snapshot.docs.map((doc) => Mentor.fromMap(doc)).toList();
   }
 
-  Future<void> tambahMentor(String nama, String asal, String deskripsi, String fotoUrl, String email) async {
+  Future<void> tambahMentor(String nama, String asal, String deskripsi, String fotoUrl, String nohp) async {
     await mentorsCollection.add({
       'nama': nama,
       'asal': asal,
       'deskripsi': deskripsi,
       'fotoUrl': fotoUrl,
-      'email': email,
+      'nohp': nohp,
     });
+  }
+
+  Future<void> deleteMentor(String id) async {
+    await mentorsCollection.doc(id).delete();
   }
 
   Future<File?> pickImage() async {

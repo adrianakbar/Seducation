@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../auth/login_view.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashscreenView extends StatefulWidget {
+  const SplashscreenView({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashscreenViewState createState() => _SplashscreenViewState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashscreenViewState extends State<SplashscreenView> {
   double _opacity = 0.0;
 
   @override
@@ -18,11 +18,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => Login()),
+        MaterialPageRoute(builder: (_) => LoginView()),
       );
     });
 
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         _opacity = 1.0;
       });
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
               children: [
                 AnimatedOpacity(
                   opacity: _opacity,
-                  duration: const Duration(seconds: 800),
+                  duration: const Duration(seconds: 1),
                   child: Image.asset(
                     'assets/images/judul.png',
                     fit: BoxFit.scaleDown,
@@ -67,8 +67,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: const Text(
                       '“Berani Berdiri, Berani Melawan”',
                       style: TextStyle(
-                        color: Color(0xFFFF5146),
-                        fontSize: 20,
+                        fontFamily: 'Poppins',
+                        color: Color(0xFFF8A083),
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,

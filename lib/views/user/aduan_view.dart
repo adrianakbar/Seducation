@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'navbar_bawah.dart';
+import 'navbar_user.dart';
 import 'package:flutter_application_1/controllers/aduan_controller.dart';
 import 'package:flutter_application_1/models/aduan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -77,7 +77,7 @@ class _FormaduanViewState extends State<FormaduanView> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const NavbarBawah()),
+        MaterialPageRoute(builder: (context) => const NavbarUser()),
       );
     }
   }
@@ -111,14 +111,14 @@ class _FormaduanViewState extends State<FormaduanView> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const NavbarBawah()),
+              MaterialPageRoute(builder: (context) => const NavbarUser()),
             );
           },
         ),
         title: const Text(
           'Buat Laporan',
           style: TextStyle(
-              fontSize: 30,
+              fontSize: 25,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
               color: Color(0xFFE87C5F)),
@@ -137,7 +137,7 @@ class _FormaduanViewState extends State<FormaduanView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Jenis pelecehan*',
+                      'Jenis pelecehan',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 16,
@@ -286,7 +286,6 @@ class _FormaduanViewState extends State<FormaduanView> {
                       ? const Icon(
                           Icons.image,
                           size: 50,
-                          color: Colors.grey,
                         )
                       : Image.file(
                           _imageFile!,

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/user/artikel_view.dart';
 import 'package:flutter_application_1/views/user/homepage_view.dart';
-import 'package:flutter_application_1/views/user/listpesan.dart';
+import 'package:flutter_application_1/views/user/profil_view.dart';
 
-class NavbarBawah extends StatefulWidget {
-  const NavbarBawah({Key? key}) : super(key: key);
+class NavbarUser extends StatefulWidget {
+  const NavbarUser({Key? key}) : super(key: key);
 
   @override
-  State<NavbarBawah> createState() => _NavbarBawah();
+  State<NavbarUser> createState() => _NavbarUser();
 }
 
-class _NavbarBawah extends State<NavbarBawah> {
+class _NavbarUser extends State<NavbarUser> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomepageuserView(),
     ArtikelView(),
-    ListpesanView()
+    ProfilView()
   ];
 
   void _onItemTapped(int index) {
@@ -43,8 +43,8 @@ class _NavbarBawah extends State<NavbarBawah> {
             label: 'Artikel',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_rounded),
-            label: 'Chat'
+            icon: Icon(Icons.person),
+            label: 'Profil'
           )
         ],
         currentIndex: _selectedIndex,

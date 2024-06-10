@@ -43,30 +43,34 @@ class DetailartikelView extends StatelessWidget {
             return const Center(child: Text('Artikel tidak ditemukan'));
           } else {
             var data = snapshot.data!.data() as Map<String, dynamic>;
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15), // Border radius
-                    child: Image.network(data['imageUrl']),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    data['judul'],
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins',
+            return SingleChildScrollView(
+              // Tambahkan SingleChildScrollView di sini
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15), // Border radius
+                      child: Image.network(data['imageUrl']),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    data['content'] ?? 'Tidak ada konten',
-                    style: const TextStyle(fontSize: 16, fontFamily: 'Poppins'),
-                  ),
-                ],
+                    const SizedBox(height: 16),
+                    Text(
+                      data['judul'],
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      data['content'] ?? 'Tidak ada konten',
+                      style:
+                          const TextStyle(fontSize: 16, fontFamily: 'Poppins'),
+                    ),
+                  ],
+                ),
               ),
             );
           }

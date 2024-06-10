@@ -5,7 +5,8 @@ import 'dart:io';
 import 'package:flutter_application_1/models/aduan.dart';
 
 class AduanController {
-  final CollectionReference aduanCollection = FirebaseFirestore.instance.collection('aduan');
+  final CollectionReference aduanCollection =
+      FirebaseFirestore.instance.collection('aduan');
 
   Future<void> addAduan(Aduan aduan, File? imageFile) async {
     String? imageUrl;
@@ -16,9 +17,11 @@ class AduanController {
       email = user.email; // Menggunakan email dari user saat ini
     }
 
-    if (imageFile != null && email != null) { // Menggunakan email saat ini
+    if (imageFile != null && email != null) {
+      // Menggunakan email saat ini
       final fileName = '${email}_${aduan.jenisPelecehan}_${DateTime.now()}.png';
-      final storageRef = FirebaseStorage.instance.ref().child('aduan/$fileName');
+      final storageRef =
+          FirebaseStorage.instance.ref().child('aduan/$fileName');
       await storageRef.putFile(imageFile);
       imageUrl = await storageRef.getDownloadURL();
     }
@@ -26,5 +29,10 @@ class AduanController {
     aduan.imageUrl = imageUrl;
     await aduanCollection.add(aduan.toMap());
   }
-}
 
+  Stream<List<Aduan>> getAllAduan() {
+    return aduanCollection.snapshots().map((querySnapshot) {
+      return querySnapshot.docs.map((doc) => Aduan.fromMap(doc)).toList();
+    });
+  }
+}

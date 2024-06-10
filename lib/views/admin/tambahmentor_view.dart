@@ -10,11 +10,10 @@ class TambahmentorView extends StatefulWidget {
 
 class _TambahmentorViewState extends State<TambahmentorView> {
   final Mentorcontroller mentorController = Mentorcontroller();
-
   final TextEditingController namaController = TextEditingController();
   final TextEditingController asalController = TextEditingController();
   final TextEditingController deskripsiController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nohpController = TextEditingController();
   String? fotoUrl;
   File? _image;
 
@@ -27,6 +26,47 @@ class _TambahmentorViewState extends State<TambahmentorView> {
     }
   }
 
+  Future<void> _submitForm() async {
+    if (namaController.text.isNotEmpty &&
+        asalController.text.isNotEmpty &&
+        deskripsiController.text.isNotEmpty &&
+        nohpController.text.isNotEmpty &&
+        _image != null) {
+      fotoUrl = await mentorController.uploadImage(
+          _image!, '${namaController.text}.png');
+      await mentorController.tambahMentor(
+        namaController.text,
+        asalController.text,
+        deskripsiController.text,
+        fotoUrl ?? '',
+        nohpController.text,
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const NavbarAdmin()),
+      );
+    } else {
+      // Handle the case where required fields are not filled
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Gagal'),
+            content: const Text('Mohon isi semua data'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +76,7 @@ class _TambahmentorViewState extends State<TambahmentorView> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const NavbarAdmin()),
             );
@@ -46,7 +86,7 @@ class _TambahmentorViewState extends State<TambahmentorView> {
           'Tambah Mentor',
           style: TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 32,
+            fontSize: 25,
             fontWeight: FontWeight.bold,
             color: Color(0xFFF88A65),
           ),
@@ -75,16 +115,16 @@ class _TambahmentorViewState extends State<TambahmentorView> {
                 ),
               ),
               const SizedBox(height: 32),
-              _buildTextField('Nama', namaController),
+              _buildTextField('Nama*', namaController),
               const SizedBox(height: 16),
-              _buildTextField('Asal', asalController),
+              _buildTextField('Asal*', asalController),
               const SizedBox(height: 16),
-              _buildTextField('Deskripsi', deskripsiController),
+              _buildTextField('Deskripsi*', deskripsiController),
               const SizedBox(height: 16),
-              _buildTextField('Email', emailController),
+              _buildTextField('No Hp*', nohpController),
               const SizedBox(height: 32),
               const Text(
-                'Upload Foto Mentor (Wajib)',
+                'Upload Foto Mentor*',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 16,
@@ -131,49 +171,7 @@ class _TambahmentorViewState extends State<TambahmentorView> {
                   width: 358,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: () async {
-                      if (namaController.text.isNotEmpty &&
-                          asalController.text.isNotEmpty &&
-                          deskripsiController.text.isNotEmpty &&
-                          emailController.text.isNotEmpty &&
-                          _image != null) {
-                        fotoUrl = await mentorController.uploadImage(
-                            _image!, '${namaController.text}.png');
-                        await mentorController.tambahMentor(
-                          namaController.text,
-                          asalController.text,
-                          deskripsiController.text,
-                          fotoUrl ?? '', // Use empty string if fotoUrl is null
-                          emailController.text,
-                        );
-                        Navigator.of(context)
-                            .pop(); // Navigate back after adding
-                      } else {
-                        // Handle the case where required fields are not filled
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('Gagal'),
-                              content: const Text('Mohon isi semua data'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const NavbarAdmin()),
-                                    );
-                                  },
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
+                    onPressed: _submitForm,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF8A083),
                       textStyle: const TextStyle(

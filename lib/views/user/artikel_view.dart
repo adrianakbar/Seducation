@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/artikel_controller.dart';
 import 'package:flutter_application_1/models/artikel.dart';
 import 'package:flutter_application_1/views/user/detailartikel_view.dart';
-import 'package:flutter_application_1/views/user/navbar_bawah.dart';
+import 'package:flutter_application_1/views/user/navbar_user.dart';
 
 class ArtikelView extends StatefulWidget {
   const ArtikelView({Key? key}) : super(key: key);
@@ -34,14 +34,14 @@ class _ArtikelViewState extends State<ArtikelView> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const NavbarBawah()),
+              MaterialPageRoute(builder: (context) => const NavbarUser()),
             );
           },
         ),
         title: const Text(
           'Artikel',
           style: TextStyle(
-            fontSize: 30,
+            fontSize: 25,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.bold,
             color: Color(0xFFE87C5F),
@@ -60,6 +60,7 @@ class _ArtikelViewState extends State<ArtikelView> {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: Card(
+                      elevation: 5,
                       clipBehavior: Clip.antiAlias,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -107,6 +108,8 @@ class _ArtikelViewState extends State<ArtikelView> {
                           Positioned(
                             bottom: 10,
                             right: 10,
+                            height: 30,
+                            width: 85,
                             child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.push(
@@ -120,7 +123,7 @@ class _ArtikelViewState extends State<ArtikelView> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF00E6AB),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
                                 ),
                                 child: const Text(

@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/auth_controller.dart';
 import 'package:flutter_application_1/views/auth/login_view.dart';
 
-class Register extends StatelessWidget {
-  Register({Key? key}) : super(key: key);
+class RegisterView extends StatelessWidget {
+  RegisterView({Key? key}) : super(key: key);
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController(); // Tambahkan controller untuk username
+  final TextEditingController _usernameController = TextEditingController();
 
   void register(BuildContext context) {
     final authService = AuthController();
     final String email = _emailController.text.trim();
     final String password = _passwordController.text.trim();
     final String confirmPassword = _confirmPasswordController.text.trim();
-    final String username = _usernameController.text.trim(); // Ambil nilai username dari TextField
+    final String username = _usernameController.text.trim();
 
     if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty || username.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Semua kolom harus diisi'),
         ),
       );
@@ -31,11 +31,11 @@ class Register extends StatelessWidget {
         if (result != null) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Login()),
+            MaterialPageRoute(builder: (context) => LoginView()),
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('Gagal mendaftar'),
             ),
           );
@@ -49,7 +49,7 @@ class Register extends StatelessWidget {
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Password tidak sesuai'),
         ),
       );
@@ -64,12 +64,11 @@ class Register extends StatelessWidget {
         backgroundColor: const Color(0xFFFFF0E5),
         elevation: 0,
         leading: IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black),
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Login()),
+              MaterialPageRoute(builder: (context) => LoginView()),
             );
           },
         ),
@@ -106,102 +105,104 @@ class Register extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.only(top: 90),
-                  child: const Text(
-                    'Register',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Color(0xFFF88A65),
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const SizedBox(height: 60),
-                TextField(
-                  controller: _usernameController, // Gunakan controller untuk username
-                  style: const TextStyle(color: Colors.black),
-                  decoration: const InputDecoration(
-                    hintText: 'Username', // Ganti dengan label yang sesuai
-                    hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Poppins'),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFE87C5F)),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.only(top: 90),
+                    child: const Text(
+                      'Register',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Color(0xFFF88A65),
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                ),
-                const SizedBox(height: 20.0),
-                TextField(
-                  controller: _emailController,
-                  style: const TextStyle(color: Colors.black),
-                  decoration: const InputDecoration(
-                    hintText: 'Email',
-                    hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Poppins'),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFE87C5F)),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                TextField(
-                  controller: _passwordController,
-                  style: const TextStyle(color: Colors.black),
-                  decoration: const InputDecoration(
-                    hintText: 'Password',
-                    hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Poppins'),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFE87C5F)),
+                  const SizedBox(height: 60),
+                  TextField(
+                    controller: _usernameController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
+                      hintText: 'Username',
+                      hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Poppins'),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFE87C5F)),
+                      ),
                     ),
                   ),
-                  obscureText: true,
-                ),
-                const SizedBox(height: 20.0),
-                TextField(
-                  controller: _confirmPasswordController,
-                  style: const TextStyle(color: Colors.black),
-                  decoration: const InputDecoration(
-                    hintText: 'Confirm Password',
-                    hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Poppins'),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFE87C5F)),
+                  const SizedBox(height: 20.0),
+                  TextField(
+                    controller: _emailController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
+                      hintText: 'Email',
+                      hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Poppins'),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFE87C5F)),
+                      ),
                     ),
                   ),
-                  obscureText: true,
-                ),
-                const SizedBox(height: 30.0),
-                ElevatedButton(
-                  onPressed: () {
-                    register(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
+                  const SizedBox(height: 20.0),
+                  TextField(
+                    controller: _passwordController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Poppins'),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFE87C5F)),
+                      ),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 23),
-                    backgroundColor: const Color(0xFFF8A083),
+                    obscureText: true,
                   ),
-                  child: const Text(
-                    'Register',
-                    style: TextStyle(color: Colors.white, fontFamily: 'Poppins', fontSize: 16),
+                  const SizedBox(height: 20.0),
+                  TextField(
+                    controller: _confirmPasswordController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
+                      hintText: 'Confirm Password',
+                      hintStyle: TextStyle(color: Colors.grey, fontFamily: 'Poppins'),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFFE87C5F)),
+                      ),
+                    ),
+                    obscureText: true,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 30.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      register(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      backgroundColor: const Color(0xFFF8A083),
+                    ),
+                    child: const Text(
+                      'Register',
+                      style: TextStyle(color: Colors.white, fontFamily: 'Poppins', fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

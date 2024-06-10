@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/views/admin/HomePageAdmin.dart';
+import 'package:flutter_application_1/views/admin/listaduan_view.dart';
+import 'package:flutter_application_1/views/admin/listartikel_view.dart';
+import 'package:flutter_application_1/views/admin/listmentor_view.dart';
 import 'package:flutter_application_1/views/admin/tambahmentor_view.dart';
 import 'package:flutter_application_1/views/user/aduan_view.dart';
 
@@ -15,9 +17,9 @@ class _NavbarAdmin extends State<NavbarAdmin> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    HomepageAdmin(),
-    TambahmentorView(),
-    FormaduanView()
+    ListaduanView(),
+    ListartikelView(),
+    ListmentorView(),
   ];
 
   void _onItemTapped(int index) {
@@ -36,17 +38,17 @@ class _NavbarAdmin extends State<NavbarAdmin> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: 'Home',
+            icon: Icon(Icons.article_rounded),
+            label: 'Aduan',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.article_rounded),
+            icon: Icon(Icons.menu_book_rounded),
+            label: 'Artikel',
+          ),
+    BottomNavigationBarItem(
+            icon: Icon(Icons.person),
             label: 'Mentor',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_rounded),
-            label: 'Chat'
-          )
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
