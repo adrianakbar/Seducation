@@ -86,7 +86,7 @@ class LoginView extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(height: 180),
+                  const SizedBox(height: 140),
                   // Email field
                   TextField(
                     controller: _emailController,
@@ -136,7 +136,8 @@ class LoginView extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        ElevatedButton(
+                        const SizedBox(width: 7,),
+                        TextButton(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -144,9 +145,8 @@ class LoginView extends StatelessWidget {
                                   builder: (context) => RegisterView()),
                             );
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero, // Remove default padding
                           ),
                           child: const Text(
                             'Register',

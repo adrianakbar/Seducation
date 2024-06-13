@@ -67,7 +67,7 @@ class _ListmentorViewState extends State<ListmentorView> {
             itemBuilder: (context, index) {
               var mentor = mentors[index];
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Card(
                   elevation: 3,
                   shape: RoundedRectangleBorder(
@@ -96,6 +96,7 @@ class _ListmentorViewState extends State<ListmentorView> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
+                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 const SizedBox(height: 8),
@@ -106,6 +107,7 @@ class _ListmentorViewState extends State<ListmentorView> {
                                       style: const TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w500,
+                                        fontFamily: 'Poppins',
                                         color: Color(0xFFF8A083),
                                       ),
                                     ),
@@ -148,20 +150,19 @@ class _ListmentorViewState extends State<ListmentorView> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.grey[900],
           title: const Text(
             "Konfirmasi Hapus",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(fontFamily: 'Poppins'),
           ),
           content: const Text(
             "Apakah Anda ingin menghapus mentor ini?",
-            style: TextStyle(color: Colors.white70),
+            style: TextStyle(fontFamily: 'Poppins'),
           ),
           actions: <Widget>[
             TextButton(
               child: const Text(
-                "Tidak",
-                style: TextStyle(color: Colors.redAccent),
+                "Batal",
+                style: TextStyle(color: Colors.redAccent, fontFamily: 'Poppins'),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -170,7 +171,7 @@ class _ListmentorViewState extends State<ListmentorView> {
             TextButton(
               child: const Text(
                 "Ya",
-                style: TextStyle(color: Colors.greenAccent),
+                style: TextStyle(color: Colors.greenAccent, fontFamily: 'Poppins'),
               ),
               onPressed: () {
                 Navigator.of(context).pop();

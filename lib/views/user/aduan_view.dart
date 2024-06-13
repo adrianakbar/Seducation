@@ -109,7 +109,7 @@ class _FormaduanViewState extends State<FormaduanView> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const NavbarUser()),
             );

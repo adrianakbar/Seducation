@@ -120,62 +120,64 @@ class _TambahartikelViewState extends State<TambahartikelView> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                'Judul Artikel*',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
+      body: SingleChildScrollView(
+        // Wrap dengan SingleChildScrollView
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'Judul Artikel*',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                controller: _judulController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Judul artikel harus diisi';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  hintText: 'Masukkan judul artikel',
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _judulController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Judul artikel harus diisi';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    hintText: 'Masukkan judul artikel',
+                    border: OutlineInputBorder(),
+                  ),
+                  maxLines: 1,
                 ),
-                maxLines: 1,
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Deskripsi*',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
+                const SizedBox(height: 20),
+                const Text(
+                  'Deskripsi*',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                controller: _deskripsiController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Deskripsi artikel harus diisi';
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  hintText: 'Masukkan deskripsi artikel',
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _deskripsiController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Deskripsi artikel harus diisi';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    hintText: 'Masukkan deskripsi artikel',
+                    border: OutlineInputBorder(),
+                  ),
+                  maxLines: 10,
                 ),
-                maxLines: 10,
-              ),
-              const SizedBox(height: 20),
-              _buildImagePickerRow(),
-              const SizedBox(height: 30),
-              ElevatedButton(
+                const SizedBox(height: 20),
+                _buildImagePickerRow(),
+                const SizedBox(height: 30),
+                ElevatedButton(
                   onPressed: _submitForm,
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(340, 50),
@@ -188,8 +190,11 @@ class _TambahartikelViewState extends State<TambahartikelView> {
                     'Selesai',
                     style:
                         TextStyle(color: Colors.white, fontFamily: 'Poppins'),
-                  )),
-            ],
+                  ),
+                ),
+                const SizedBox(height: 20), // Jarak tambahan di bagian bawah
+              ],
+            ),
           ),
         ),
       ),

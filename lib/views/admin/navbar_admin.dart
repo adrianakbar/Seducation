@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/admin/listaduan_view.dart';
 import 'package:flutter_application_1/views/admin/listartikel_view.dart';
 import 'package:flutter_application_1/views/admin/listmentor_view.dart';
-import 'package:flutter_application_1/views/admin/tambahmentor_view.dart';
-import 'package:flutter_application_1/views/user/aduan_view.dart';
 
 
 class NavbarAdmin extends StatefulWidget {

@@ -1,4 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-feature android:name="android.hardware.camera" />
+
+<!-- Untuk Android 11 ke Atas, Buka Whatsapp -->
+<queries>
+  <intent>
+    <action android:name="android.support.customtabs.action.CustomTabsService" />
+  </intent>
+</queries>
+
     <application
         android:label="Seducation"
         android:name="${applicationName}"

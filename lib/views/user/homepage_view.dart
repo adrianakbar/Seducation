@@ -63,7 +63,7 @@ class _HomepageuserViewState extends State<HomepageuserView> {
                           ),
                         ),
                         Text(
-                          'Halo, ${_controller.username}',
+                          'Halo, ${_controller.username ?? 'User'}',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -93,8 +93,8 @@ class _HomepageuserViewState extends State<HomepageuserView> {
                         child: CircleAvatar(
                           radius: 25,
                           backgroundColor: Colors.transparent,
-                          backgroundImage: _controller.imageUrl.isNotEmpty
-                              ? NetworkImage(_controller.imageUrl)
+                          backgroundImage: _controller.imageUrl != null
+                              ? NetworkImage(_controller.imageUrl!)
                               : const AssetImage('assets/images/Profile.png')
                                   as ImageProvider,
                         ),
@@ -301,7 +301,7 @@ class _HomepageuserViewState extends State<HomepageuserView> {
                     var aduanList = snapshot.data!;
                     return ListView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: aduanList.length,
                       itemBuilder: (context, index) {
                         var aduan = aduanList[index];
@@ -463,7 +463,9 @@ class _HomepageuserViewState extends State<HomepageuserView> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchWhatsApp(mentor.nohp);
+                  },
                   icon: const Icon(Icons.chat, color: Colors.white),
                   label: const Text(
                     'Chat Sekarang',
@@ -477,5 +479,14 @@ class _HomepageuserViewState extends State<HomepageuserView> {
         );
       },
     );
+  }
+}
+
+void _launchWhatsApp(String phoneNumber) async {
+  var whatsappUrl = "https://wa.me/$phoneNumber";
+  if (await canLaunch(whatsappUrl)) {
+    await launch(whatsappUrl);
+  } else {
+    throw 'Could not launch $whatsappUrl';
   }
 }

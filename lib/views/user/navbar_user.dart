@@ -13,10 +13,10 @@ class NavbarUser extends StatefulWidget {
 class _NavbarUser extends State<NavbarUser> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomepageuserView(),
-    ArtikelView(),
-    ProfilView()
+  static List<Widget> _widgetOptions = <Widget>[
+    const HomepageuserView(),
+    const ArtikelView(),
+    const ProfilView()
   ];
 
   void _onItemTapped(int index) {

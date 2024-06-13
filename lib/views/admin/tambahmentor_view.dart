@@ -91,6 +91,7 @@ class _TambahmentorViewState extends State<TambahmentorView> {
             color: Color(0xFFF88A65),
           ),
         ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -22,7 +22,7 @@ class _ListaduanView extends State<ListaduanView> {
         backgroundColor: const Color(0xFFFFF0E5),
         automaticallyImplyLeading: false,
         title: const Text(
-          'Laporan',
+          'List Laporan',
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: 25,
@@ -55,8 +55,8 @@ class _ListaduanView extends State<ListaduanView> {
                     color: Colors.white,
                     border: Border.all(color: const Color(0xFFE87C5F)),
                     borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      const BoxShadow(
+                    boxShadow: const [
+                      BoxShadow(
                         color: Colors.black26,
                         blurRadius: 6,
                         offset: Offset(0, 2),

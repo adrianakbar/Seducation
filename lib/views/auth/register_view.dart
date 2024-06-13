@@ -110,7 +110,7 @@ class RegisterView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.only(top: 90),
+                    padding: const EdgeInsets.only(top: 50),
                     child: const Text(
                       'Register',
                       style: TextStyle(

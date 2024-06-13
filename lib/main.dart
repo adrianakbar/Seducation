@@ -1,15 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/admin/navbar_admin.dart';
-import 'package:flutter_application_1/views/admin/tambahartikel_view.dart';
-import 'package:flutter_application_1/views/mentor/homepage.dart';
-import 'package:flutter_application_1/views/user/aduan_view.dart';
-import 'package:flutter_application_1/views/user/homepage_view.dart';
 import 'package:flutter_application_1/views/user/navbar_user.dart';
 import 'views/user/splashscreen_view.dart';
 import 'views/auth/login_view.dart';
 import 'views/auth/register_view.dart';
-import 'views/user/navbar_user.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -36,10 +31,9 @@ class MyApp extends StatelessWidget {
       // Atur rute aplikasi
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashscreenView(),
-        '/homepageuser': (context) => NavbarUser(),
-        '/homepageadmin': (context) => NavbarAdmin(),
-        '/homepagementor': (context) => HomepageMentor(),
+        '/': (context) => const SplashscreenView(),
+        '/homepageuser': (context) => const NavbarUser(),
+        '/homepageadmin': (context) => const NavbarAdmin(),
         '/register': (context) => RegisterView(),
         '/logout': (context) => LoginView(),
       },

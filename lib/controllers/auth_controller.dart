@@ -30,9 +30,6 @@ class AuthController {
         case 'admin':
           Navigator.pushReplacementNamed(context, '/homepageadmin');
           break;
-        case 'mentor':
-          Navigator.pushReplacementNamed(context, '/homepagementor');
-          break;
         default:
           throw ('Peran tidak dikenali');
       }

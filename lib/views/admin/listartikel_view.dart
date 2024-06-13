@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/artikel_controller.dart';
 import 'package:flutter_application_1/models/artikel.dart';
-import 'package:flutter_application_1/views/admin/navbar_admin.dart';
 import 'package:flutter_application_1/views/admin/tambahartikel_view.dart';
 
 class ListartikelView extends StatefulWidget {
@@ -90,14 +89,14 @@ class _ListartikelViewState extends State<ListartikelView> {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
-                                      title: const Text('Hapus Artikel'),
+                                      title: const Text('Hapus Artikel', style: TextStyle(fontFamily: 'Poppins'),),
                                       content: const Text(
-                                          'Apakah Anda yakin ingin menghapus artikel ini?'),
+                                          'Apakah Anda ingin menghapus artikel ini?', style: TextStyle(fontFamily: 'Poppins')),
                                       actions: <Widget>[
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(context),
-                                          child: const Text('Batal'),
+                                          child: const Text('Batal', style: TextStyle(fontFamily: 'Poppins', color: Colors.redAccent)),
                                         ),
                                         TextButton(
                                           onPressed: () async {
@@ -107,7 +106,7 @@ class _ListartikelViewState extends State<ListartikelView> {
                                             setState(() {});
                                             Navigator.pop(context);
                                           },
-                                          child: const Text('Hapus'),
+                                          child: const Text('Ya', style: TextStyle(fontFamily: 'Poppins', color: Colors.greenAccent)),
                                         ),
                                       ],
                                     );

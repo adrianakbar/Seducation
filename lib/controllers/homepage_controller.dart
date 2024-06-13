@@ -5,8 +5,8 @@ import 'package:flutter_application_1/models/mentor.dart';
 
 class HomepageuserController {
   late String email;
-  late String username;
-  late String imageUrl;
+  String? username;
+  String? imageUrl;
 
   Future<void> getCurrentUser() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -17,7 +17,7 @@ class HomepageuserController {
           .get();
 
       email = user.email ?? userDoc['email'];
-      username = userDoc['username'] ?? 'User';
+      username = userDoc['username']; // Make username nullable
       imageUrl = userDoc['imageUrl'];
     }
   }
@@ -55,9 +55,7 @@ class HomepageuserController {
     List<Mentor> mentorList = [];
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await FirebaseFirestore.instance
-              .collection('mentors')
-              .get();
+          await FirebaseFirestore.instance.collection('mentors').get();
 
       for (var doc in querySnapshot.docs) {
         Mentor mentor = Mentor(

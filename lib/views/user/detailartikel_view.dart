@@ -58,7 +58,7 @@ class DetailartikelView extends StatelessWidget {
                     Text(
                       data['judul'],
                       style: const TextStyle(
-                        fontSize: 24,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Poppins',
                       ),
