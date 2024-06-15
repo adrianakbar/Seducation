@@ -53,14 +53,38 @@ class _FormaduanViewState extends State<FormaduanView> {
     }
   }
 
-  Future<void> _pickImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await ImagePicker().pickImage(source: source);
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
       });
     }
+  }
+
+  Future<void> _showImageSourceDialog() async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Pilih Sumber Gambar'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _pickImage(ImageSource.camera);
+            },
+            child: const Text('Kamera'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _pickImage(ImageSource.gallery);
+            },
+            child: const Text('Galeri'),
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> _submitForm() async {
@@ -109,7 +133,7 @@ class _FormaduanViewState extends State<FormaduanView> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const NavbarUser()),
             );
@@ -295,7 +319,7 @@ class _FormaduanViewState extends State<FormaduanView> {
                         ),
                   const SizedBox(width: 16),
                   ElevatedButton(
-                    onPressed: _pickImage,
+                    onPressed: _showImageSourceDialog,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF8A083), // F8A083
                       textStyle: const TextStyle(

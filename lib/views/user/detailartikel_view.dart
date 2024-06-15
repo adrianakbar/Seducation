@@ -65,7 +65,7 @@ class DetailartikelView extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      data['content'] ?? 'Tidak ada konten',
+                      data['deskripsi'] ?? 'Tidak ada konten',
                       style:
                           const TextStyle(fontSize: 16, fontFamily: 'Poppins'),
                     ),
